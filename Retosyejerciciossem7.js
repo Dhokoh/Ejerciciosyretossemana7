@@ -129,30 +129,30 @@ function elem_exists(array, elem){
 }
 
 function add_elemento(array, new_element, max_size){
-    for (let i = 0; i < array.length; i ++){
-        //Si el elemento no existe en el arreglo y no se ha alcanzado el tamaño máximo, el nuevo elemento se agrega al final del arreglo
-        if (!elem_exists(array, array[i]) && array.length < max_size){
-            array.push(new_element)
-            return array
-        }
-        //Si el elemento no existe en el arreglo y se ha alcanzado el tamaño máximo, el nuevo elemento debe reemplazar al último elemento del arreglo
-        else if (!elem_exists(array, array[i]) && array.length >= max_size){
-            array[array.length - 1] = new_element
-            return array
-        }
-        // Si el elemento ya existe en el arreglo, se reemplaza al final.
-        else if (elem_exists(array, array[i])){
-            array[array.length - 1] = new_element
-            return array
-        }
+    //Si el elemento no existe en el arreglo y no se ha alcanzado el tamaño máximo, el nuevo elemento se agrega al final del arreglo
+    if (!elem_exists(array, new_element) && array.length != max_size){
+        array.push(new_element)
+        return array
+    }
+    //Si el elemento no existe en el arreglo y se ha alcanzado el tamaño máximo, el nuevo elemento debe reemplazar al último elemento del arreglo
+    else if (!elem_exists(array, new_element) && array.length === max_size){
+        array.pop()
+        array.push(new_element)
+        return array
+    }
+    //Si el elemento ya existe en el arreglo, se reemplaza al final.
+    else if (elem_exists(array, new_element)){
+        array.pop()
+        array.push(new_element)
+        return array
     }
 }
 
 // console.log(elem_exists(test_array, 2))
 // console.log(elem_exists(test_array, 19))
 //caso 1.
-console.log(add_elemento(test_array, 4, 5))
+//console.log(add_elemento(test_array, 4, 5))
 //caso 2.
 //console.log(add_elemento(test_array, 4, 3))
 //caso 3.
-//console.log(add_elemento(test_array, 4, 5))
+//console.log(add_elemento(test_array, 2, 5))
